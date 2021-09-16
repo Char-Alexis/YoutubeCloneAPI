@@ -2,9 +2,9 @@ from django.db import models
 
 # Create your models here.
 class Comment(models.Model):
-    comment_text = models.CharField(max_length=500)
-    video_id= models.CharField(max_length=500)
-    like= models.IntegerField(blank=True, null=True)
+    comment_text = models.TextField(max_length=500)
+    video_id= models.TextField(max_length=500)
+    like= models.IntegerField(default= None, blank=True, null=True)
     dislike= models.IntegerField(blank=True, null=True)
 
     def __init__(self):
