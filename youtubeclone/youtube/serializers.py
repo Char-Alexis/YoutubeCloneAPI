@@ -15,7 +15,4 @@ class CommentSerializer(serializers.ModelSerializer):
 class ReplySerializer(serializers.ModelSerializer):
     class Meta:
         model = Reply
-        fields = ['id', 'reply_text', 'orig_comment_id']
-
-        # def create(self, validated_data):
-        #     return Reply.objects.create(**validated_data)
+        fields = ['id', 'text', 'comment_id']

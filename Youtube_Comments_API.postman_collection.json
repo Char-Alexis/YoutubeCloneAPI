@@ -6,6 +6,20 @@
 	},
 	"item": [
 		{
+			"name": "Youtube",
+			"item": [
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Gett All comments",
 			"request": {
 				"method": "GET",
@@ -63,9 +77,33 @@
 		{
 			"name": "Reply to Comment",
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
-				"url": null
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"reply_text\": \"Some great comment here!\",\r\n    \"comment\": \"1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/youtube/reply/video",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"youtube",
+						"reply",
+						"video"
+					]
+				}
 			},
 			"response": []
 		},
