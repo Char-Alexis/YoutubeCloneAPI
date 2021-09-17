@@ -8,20 +8,22 @@ from .serializers import CommentSerializer
 from .serializers import ReplySerializer
 
 
+class CommentAllList(APIView):
+    def get(self, request):
+        comment= Comment.objects.all()
+        serializer= CommentSerializer(comment, many=True)
+        return Response(serializer.data)
+
 class CommentList(APIView):
     def get_byVideo(self, request, video):
         comments = Comment.objects.filter(video_id =video)
         serializer= CommentSerializer(comments, many=True)
         return Response(serializer.data)
 
-    # def get(self, request, video_id):
-    #     comment= Comment.objects.all()
-    #     serializer= CommentSerializer(comment, many=True)
-    #     return Response(serializer.data)
 
-    def post(self, request, video_id):
+    def post(self, request):
         serializer= CommentSerializer(data=request.data)
-        serializer.video_id= video_id
+        # serializer.video_id=video_id
         if serializer.is_valid():
             serializer.save()
             return Response (serializer.data,status=status.HTTP_201_CREATED)
@@ -51,8 +53,8 @@ class CommentDetail(APIView):
 
 
 class ReplyList(APIView):
-    def get(self, request, comment_id):
-        reply = Reply.objects.filter(comment_id=comment_id)
+    def get(self, request, comment):
+        reply = Reply.objects.filter(orig_comment_id=comment)
         serializer = ReplySerializer(reply, many=True)
         return Response(serializer.data)
 

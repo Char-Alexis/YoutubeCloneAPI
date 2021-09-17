@@ -6,7 +6,7 @@ from .models import Reply
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
-        fields = ['comment_text', 'video_id', 'like', 'dislike']
+        fields = ['id', 'comment_text', 'video_id', 'like', 'dislike']
 
         def create(self, validated_data):
             return Comment.objects.create(**validated_data)
@@ -15,4 +15,7 @@ class CommentSerializer(serializers.ModelSerializer):
 class ReplySerializer(serializers.ModelSerializer):
     class Meta:
         model = Reply
-        fields = ['reply_text', 'comment_id']
+        fields = ['id', 'reply_text', 'orig_comment_id']
+
+        # def create(self, validated_data):
+        #     return Reply.objects.create(**validated_data)
