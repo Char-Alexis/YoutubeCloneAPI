@@ -15,8 +15,8 @@ class CommentAllList(APIView):
         return Response(serializer.data)
 
 class CommentList(APIView):
-    def get_byVideo(self, request, video):
-        comments = Comment.objects.filter(video_id =video)
+    def get(self, request, video_id):
+        comments = Comment.objects.filter(video_id =video_id)
         serializer= CommentSerializer(comments, many=True)
         return Response(serializer.data)
 
